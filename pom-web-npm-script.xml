@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <!-- ... modelVersion, GroupID, artifactID, etc  ... -->
+    
+    <packaging>war</packaging>
+
+    <properties>
+        <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+        <node.version>node_version_to_use</node.version>
+        <npm.version>npm_version_to_use</npm.version>
+        <webapp.root>root_folder_of_webapp</webapp.root>
+    </properties>
+    
+    <build>
+        
+        <finalName>${project.artifactId}</finalName>
+        
+        <plugins>
+		
+            <!-- ... More plugins as needed ... -->
+            
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${frontend-maven-plugin.version}</version>
+                <configuration>
+                    <workingDirectory>${webapp.root}</workingDirectory>
+                </configuration>
+                <executions>
+                    
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>

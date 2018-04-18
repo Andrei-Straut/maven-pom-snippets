@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+    <!-- ... modelVersion, GroupID, artifactID, etc  ... -->
+	
+    <properties>
+        <wildfly-maven-plugin-version>1.1.0.Final</wildfly-maven-plugin-version>
+    </properties>
+	
+    <build>
+        <finalName>${project.artifactId}</finalName>
+		
+        <!-- ... More plugins as needed ... -->
+		
+        <plugins>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${wildfly-maven-plugin-version}</version>
+                <configuration>
+                    <!-- Id must be the same as the one defined in settings.xml -->
+                    <id>wildfly-server-id</id>
+                    <name>${deploymentName}.war</name>
+                    <runtimeName>${deploymentName}.war</runtimeName>
+                    <force>true</force>
+                    <port>9993</port>
+                    <protocol>https-remoting</protocol>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

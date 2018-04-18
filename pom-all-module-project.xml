@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+    <!-- ... modelVersion, GroupID, artifactID, etc  ... -->
+    
+    <packaging>pom</packaging>
+    
+    <modules>
+        <module>module-1-jar</module>
+        <module>module-2-jar</module>
+        <module>module-3-war</module>
+    </modules>
+    
+    <build>
+        <plugins>
+		
+            <!-- ... More plugins as needed ... -->
+            
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+
+                        <configuration>
+                            <outputDirectory>path/to/module-1-target-folder</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/drp-core/${target-dir-name}</directory>
+                                    <includes>
+                                        <include>**/*.jar</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>path/to/module-2-target-folder</directory>
+                                    <includes>
+                                        <include>**/*.jar</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>path/to/module-3-target-folder</directory>
+                                    <includes>
+                                        <include>**/*.war</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
